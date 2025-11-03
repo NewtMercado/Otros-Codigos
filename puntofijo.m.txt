@@ -1,0 +1,27 @@
+function root = fixed_point_iteration(g, x0, tol, max_iter)
+    % Método del punto fijo para encontrar raíces de una función
+    % g: función de iteración
+    % x0: aproximación inicial
+    % tol: tolerancia para la convergencia
+    % max_iter: número máximo de iteraciones
+    
+    % Inicialización
+    iter = 0;
+    x = x0;
+    delta = tol + 1;
+
+    % Iteraciones del método del punto fijo
+    while abs(delta) > tol && iter < max_iter
+        x_next = g(x);
+        delta = x_next - x;
+        x = x_next;
+        iter = iter + 1;
+    end
+
+    % Verificar si se alcanzó la convergencia
+    if abs(delta) <= tol
+        root = x;
+    else
+        error("El método del punto fijo no convergió después de %d iteraciones.", max_iter);
+    end
+end

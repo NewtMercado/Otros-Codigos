@@ -1,0 +1,25 @@
+function [H, dH] = hermite(x)
+    % Calcula el polinomio de Hermite H y su derivada dH en el punto x
+    
+    % Primeros polinomios de Hermite
+    H0 = 1;
+    H1 = 2 * x;
+    
+    % Derivadas de los polinomios de Hermite
+    dH0 = 0;
+    dH1 = 2;
+    
+    % Calcular el polinomio de Hermite H y su derivada dH
+    H = H0;
+    dH = dH0;
+    for n = 2:length(x)
+        Hn = 2 * x .* H1 - 2 * (n - 1) * H0;
+        dHn = 2 * H1 + 2 * x .* dH1 - 2 * (n - 1) * dH0;
+        H0 = H1;
+        H1 = Hn;
+        dH0 = dH1;
+        dH1 = dHn;
+        H = [H; Hn];
+        dH = [dH; dHn];
+    end
+end

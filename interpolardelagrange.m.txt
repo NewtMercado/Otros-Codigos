@@ -1,0 +1,24 @@
+function y = lagrange_interpolation(x, y, xi)
+    % Interpolación de Lagrange
+    % x: puntos en el eje x
+    % y: puntos en el eje y
+    % xi: puntos donde se desea interpolar
+    
+    n = length(x);
+    m = length(xi);
+    y_interp = zeros(1, m);
+
+    for k = 1:m
+        L = ones(1, n);
+        for j = 1:n
+            for i = 1:n
+                if i ~= j
+                    L(j) = L(j) * (xi(k) - x(i)) / (x(j) - x(i));
+                end
+            end
+        end
+        y_interp(k) = sum(L .* y);
+    end
+
+    y = y_interp;
+end

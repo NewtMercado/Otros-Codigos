@@ -1,0 +1,27 @@
+function root = newton_method(f, df, x0, tol, max_iter)
+    % Método de Newton para encontrar raíces de una función
+    % f: función
+    % df: derivada de la función
+    % x0: aproximación inicial
+    % tol: tolerancia para la convergencia
+    % max_iter: número máximo de iteraciones
+    
+    % Inicialización
+    iter = 0;
+    x = x0;
+    delta = tol + 1;
+
+    % Iteraciones del método de Newton
+    while abs(delta) > tol && iter < max_iter
+        delta = f(x) / df(x);
+        x = x - delta;
+        iter = iter + 1;
+    end
+
+    % Verificar si se alcanzó la convergencia
+    if abs(delta) <= tol
+        root = x;
+    else
+        error("El método de Newton no convergió después de %d iteraciones.", max_iter);
+    end
+end

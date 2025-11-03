@@ -1,0 +1,16 @@
+function integral = trapezoidal_rule(f, a, b, n)
+    % Método del trapecio para calcular la integral de una función
+    % f: función a integrar
+    % a, b: límites de integración
+    % n: número de subintervalos
+
+    % Paso de integración
+    h = (b - a) / n;
+
+    % Calcular los puntos de evaluación y evaluar la función
+    x = linspace(a, b, n+1);
+    y = f(x);
+
+    % Aplicar la fórmula del trapecio
+    integral = h * (sum(y) - (y(1) + y(end)) / 2);
+end
